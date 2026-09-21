@@ -236,23 +236,22 @@
         </div>
       </fieldset>
 
-      <div class="form-row">
-        <label for="lang">Любимый язык программирования (можно выбрать несколько)</label>
-        <select id="lang" name="lang" multiple size="6">
-          <option value="pascal">Pascal</option>
-          <option value="c">C</option>
-          <option value="cpp">C++</option>
-          <option value="javascript">JavaScript</option>
-          <option value="php">PHP</option>
-          <option value="python">Python</option>
-          <option value="java">Java</option>
-          <option value="haskell">Haskel</option>
-          <option value="clojure">Clojure</option>
-          <option value="prolog">Prolog</option>
-          <option value="scala">Scala</option>
-        </select>
-        <p class="hint">Чтобы выбрать несколько языков, зажмите <code>Ctrl</code> (на Mac — <code>Cmd</code>) и кликайте по нужным пунктам списка.</p>
-      </div>
+      <fieldset>
+        <legend>Любимый язык программирования (можно выбрать несколько)</legend>
+        <div class="lang-group">
+          <label><input type="checkbox" name="lang" value="Pascal"> Pascal</label>
+          <label><input type="checkbox" name="lang" value="C"> C</label>
+          <label><input type="checkbox" name="lang" value="C++"> C++</label>
+          <label><input type="checkbox" name="lang" value="JavaScript"> JavaScript</label>
+          <label><input type="checkbox" name="lang" value="PHP"> PHP</label>
+          <label><input type="checkbox" name="lang" value="Python"> Python</label>
+          <label><input type="checkbox" name="lang" value="Java"> Java</label>
+          <label><input type="checkbox" name="lang" value="Haskel"> Haskel</label>
+          <label><input type="checkbox" name="lang" value="Clojure"> Clojure</label>
+          <label><input type="checkbox" name="lang" value="Prolog"> Prolog</label>
+          <label><input type="checkbox" name="lang" value="Scala"> Scala</label>
+        </div>
+      </fieldset>
 
       <div class="form-row">
         <label for="bio">Биография</label>
@@ -295,10 +294,8 @@
       return;
     }
 
-    var langSelect = document.getElementById('lang');
-    var chosenLangs = Array.prototype.filter
-      .call(langSelect.options, function (option) { return option.selected; })
-      .map(function (option) { return option.text; });
+    var langBoxes = document.querySelectorAll('input[name="lang"]:checked');
+    var chosenLangs = Array.prototype.map.call(langBoxes, function (box) { return box.value; });
 
     var fio = document.getElementById('fio').value.trim();
     var langsText = chosenLangs.length ? chosenLangs.join(', ') : 'не выбраны';
