@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Поиск книг</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="container" style="padding-top:30px;">
+  <section class="card">
+    <h2>Поиск книг</h2>
+    <p>Эта страница — реальная цель ссылки с тремя параметрами в URL (<code>category</code>, <code>author</code>, <code>sort</code>).</p>
+    <p id="params"></p>
+    <p><a href="index.html">← Назад на главную</a></p>
+  </section>
+</main>
+<script>
+  var p = new URLSearchParams(location.search);
+  document.getElementById('params').textContent = p.toString()
+    ? 'Параметры из URL: ' + p.toString()
+    : 'Параметры не переданы.';
+</script>
+</body>
+</html>
